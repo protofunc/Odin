@@ -1,14 +1,14 @@
-Shortcuts
+<h1>Shortcuts</h1>
 
-<!-- Default to VS Code instead of VIM for commit messages -->
+<b>Default to VS Code instead of VIM for commit messages</b>
 
 Terminal command (linux):
 
-	git config --global core.editor "code --wait"
+    git config --global core.editor "code --wait"
 
-<!-- HTML boilerplate -->
+<b>HTML boilerplate</b>
 
 In .html file:
 
-	!
+    !
 
