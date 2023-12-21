@@ -1,0 +1,23 @@
+/* Styling subesctions */
+
+body {
+    margin: 5em;
+    padding: 2em;
+    outline: 1px solid black;
+}
+
+.subsection.first {
+    color: blue;
+}
+
+.subsection.second {
+    color: green;
+}
+
+.subsection#subhead1 {
+    color: orange;
+}
+
+.subsection#subhead2{
+    color: orangered;
+}
