@@ -1,6 +1,6 @@
 /* Styling subesctions */
 
-body {
+.outlined {
     margin: 5em;
     padding: 2em;
     outline: 1px solid black;
