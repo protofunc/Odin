@@ -12,3 +12,7 @@ In .html file:
 
     !
 
+<b>CSS</b>
+ - Padding is in the border
+ - Margin is outside of the border
+ 

@@ -1,11 +1,5 @@
 /* Styling subesctions */
 
-.outlined {
-    margin: 5em;
-    padding: 2em;
-    outline: 1px solid black;
-}
-
 .subsection.first {
     color: blue;
 }
@@ -20,5 +14,12 @@
 
 .subsection#subhead2{
     color: orangered;
+}
+
+/* Index.html formatting */
+.outlined {
+    margin: 5em;
+    padding: 2em;
+    outline: 1px solid black;
 }
 
