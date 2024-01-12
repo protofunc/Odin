@@ -11,7 +11,7 @@ light purple grey {color: #e2dbe7;}
     padding: 0;
 }
 
-header, ul, body, .container {
+header, .logo-title, ul, body, .container {
     display: flex;
 }
 
@@ -20,8 +20,8 @@ header {
     color: white;
     box-shadow: 0px 1.5px 3px rgba(0, 0, 0, 0.5);
     justify-content: space-between;
-    padding: 2em 12em;
-
+    padding: 1.2em 12em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 h3 {
@@ -38,6 +38,7 @@ ul {
 a {
     color: inherit;
     text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 body {
@@ -60,10 +61,25 @@ footer {
     text-align: center;
     background: #1e2728;
     color: white;
-    padding: 2em 6em;
+    padding: 1.5em 6em;
 }
 
 /* Class specific formatting */
+
+.logo-title {
+    align-items: center;
+}
+
+#logo {
+    width: 50px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    margin-right: .5em;
+}
+
+.link:hover {
+    color: goldenrod;
+  }
+
 
 .container {
     /* align-self: center; */
@@ -102,10 +118,12 @@ footer {
 }
 
 .content-buttons {
-    padding: 2em 0;
+    padding: 2em 0;    
     background:#594f6a;
     width: 100%;
     text-align: center;
+    border-radius: 0 0 5px 5px;
+    border-bottom: 1px solid black;
 }
 
 .red {
