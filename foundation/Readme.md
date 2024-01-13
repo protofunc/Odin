@@ -16,3 +16,8 @@ In .html file:
  - Padding is in the border
  - Margin is outside of the border
  
+JS
+
+Conditional operators:
+
+    let result = condition ? value1 : value2;
