@@ -79,4 +79,45 @@ let thisYear = 2023;
 let birthYear = 1990;
 let greeting = `Hey. ${firstName + " " + lastName} is ${thisYear - birthYear} years old.`;
 
-console.log(greeting)
+console.log(greeting,"~Break~");
+
+// Assignment
+
+function add7(n) {
+	return n+7;
+}
+
+function mult(a, b) {
+	return a*b;
+}
+
+// Write a function called capitalize that takes a string and returns 
+// that string with only the first letter capitalized.
+// Make sure that it can take strings that are lowercase, UPPERCASE or BoTh.
+
+function title(str) {
+	let nStr = "";
+	let c = "";
+	
+	for (let i=0; i<str.length; i++) {
+		nStr = nStr + str[i].toLowerCase();
+	}
+
+	c = nStr[0].toUpperCase();
+	nStr = c + nStr.slice(1);
+	return nStr;
+}
+console.log(add7(3));
+console.log(mult(2, 2));
+console.log(`${title("heLlO")} friends. ${title("ThIs")} is title case in action.`);
+
+// Write a function called lastLetter that takes a string and returns the very last letter of that string:
+// lastLetter("abcd") should return "d"
+
+function last(str) {
+	let i = str.length-1;
+	return `"${str[i]}"`;
+}
+
+let lL = "badabing"
+console.log("The last letter of " + lL + " is the letter " + last(lL) + "\n");

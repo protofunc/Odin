@@ -11,7 +11,12 @@ light purple grey {color: #e2dbe7;}
     padding: 0;
 }
 
-header, .logo-title, ul, body, .container {
+@font-face {
+    font-family: 'TechnoRace';
+    src: url(/fonts/TechnoRace.otf) format('opentype');
+}
+
+header, .logo-title, ul, body, .container, .content-top, .content-game {
     display: flex;
 }
 
@@ -22,6 +27,7 @@ header {
     justify-content: space-between;
     padding: 1.2em 12em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    min-width: 950px;
 }
 
 h3 {
@@ -64,7 +70,11 @@ footer {
     padding: 1.5em 6em;
 }
 
-/* Class specific formatting */
+footer p {
+    min-width: 1150px;
+}
+
+/* Class/ID specific formatting */
 
 .logo-title {
     align-items: center;
@@ -90,6 +100,7 @@ footer {
     background: #e2dbe7;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+    min-width: 950px;
 }
 
 .content-img {
@@ -97,7 +108,41 @@ footer {
     border-radius: 50%;
     border: 2px solid white;
     box-shadow: 0px 2px 4px;
-    margin: 2em 0;
+    margin: 2em 1.5em 2em 3em;
+}
+
+.content-game {
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2em 3em 2em 1.5em;
+    padding: 2em;
+    border: 2px solid white;
+    
+}
+
+#game-title {
+    font-family: "TechnoRace", monospace;
+    font-weight: 100;
+    font-size: 75px;
+    color: white;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#game-text {
+    color: #1e2728;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    font-style: italic;
+}
+
+.game-roll {
+    margin: 1.5em 0;
+}
+
+.game-buttons {    
+    background: #1e2728;
+    width: 7em;
+    font-weight: bold;
 }
 
 .content-quote {
