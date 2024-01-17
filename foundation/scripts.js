@@ -52,7 +52,7 @@ function getCSelect() {
 
 // Prompt for and return user selection
 function getPSelect() {
-    let input = prompt("Choose rock, paper, or scissor.")
+    let input = prompt("Choose rock, paper, or scissors. Only type one of these three options.")
     let iStr = "";
     
     // Lowercase all text to account for case sensitivity
@@ -60,12 +60,13 @@ function getPSelect() {
         iStr = iStr + input[i].toLowerCase();  
     }
 
+    // Return value or end game on incorrect input
     if (iStr === "rock" || iStr === "scissors" || iStr === "paper") {
         console.log("pSelect:", iStr);
         return iStr;
     } else {
         alert("Incorrect value. Ending game.");
-        throw new Error("Does not match rock, paper, or scissors.");
+        throw new Error("Input does not match rock, paper, or scissors.");
     }
 }
 
@@ -73,10 +74,11 @@ function getPSelect() {
 function playRound(p, c) {
     // Determine winner:
     if (p === c) {
-        alert("Tie!")
+        console.log("Tie.");
+        alert("Tie!");
         return 3;
     } else if (p === "rock" && c === "scissors") {
-        console.log("Rock beats scissors.")
+        console.log("Rock beats scissors.");
         alert("Player won!");
         return 1;
     } else if (p === "rock" && c === "paper") {
@@ -84,7 +86,7 @@ function playRound(p, c) {
         alert("Computer won!");
         return 2;
     } else if (p === "scissors" && c === "rock") {
-        console.log("Rock beats scissors.")
+        console.log("Rock beats scissors.");
         alert("Computer won!");
         return 2;
     } else if (p === "scissors" && c === "paper") {
@@ -107,7 +109,7 @@ function game() {
     let pW = 0;
     let cW = 0;
 
-    // Aggregate scores, best out of 5. Ties are counted as points for both teams.
+    // Aggregate scores, best out of 5. Ties don't count as a round.
     for (let i = 0; i < 5; i++) {
         let count = playRound(getPSelect(), getCSelect()); 
         if (count === 1) {
@@ -115,13 +117,12 @@ function game() {
         } else if (count === 2) {
             cW++;
         } else {
-            pW++;
-            cW++;
+            i--;
         }
     }
 
     // Show final score and declare winner
-    console.log("pW: " + pW, "\ncW: " + cW);
+    console.log("Player Score: " + pW, "\nComp Score: " + cW);
 
     if (pW > cW) {
         alert("Player wins the match!");

@@ -21,3 +21,9 @@ JS
 Conditional operators:
 
     let result = condition ? value1 : value2;
+
+Semantics:
+
+camelCase
+
+const USE_ALL_CAPS = "if it's a variable that's truly const"
