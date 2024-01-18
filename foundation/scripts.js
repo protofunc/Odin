@@ -126,9 +126,10 @@ function game() {
         }
     }
 
-    // Show final score and declare winner
+    // Display final score in the console
     console.log("Player Score: " + pW, "\nComp Score: " + cW);
 
+    // Declare winner by comparing player wins (pW) against computer wins (cW)
     if (pW > cW) {
         alert("Player wins the match!");
     } else if (pW < cW) {
