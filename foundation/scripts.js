@@ -48,25 +48,27 @@ function getCSelect() {
         console.log("cSelect: paper");
         return "paper";
     }
+
+    /*
+    Alternative way:
+    let choices = ['rock', 'paper', 'scissors'];
+    let cSelect = choices[Math.floor(Math.random() * cSelect.length)];
+    console.log(cSelect);
+    return cSelect;
+    */
 }
 
 // Prompt for and return user selection
 function getPSelect() {
-    let input = prompt("Choose rock, paper, or scissors. Only type one of these three options.")
-    let iStr = "";
-    
-    // Lowercase all text to account for case sensitivity
-    for (let i = 0; i < input.length; i++) {
-        iStr = iStr + input[i].toLowerCase();  
-    }
+    let input = prompt("Choose rock, paper, or scissors. Only type one of these three options.").toLowerCase();
 
     // Return value or end game on incorrect input
-    if (iStr === "rock" || iStr === "scissors" || iStr === "paper") {
-        console.log("pSelect:", iStr);
-        return iStr;
+    if (input === "rock" || input === "scissors" || input === "paper") {
+        console.log("pSelect:", input);
+        return input;
     } else {
-        alert("Incorrect value. Ending game.");
-        throw new Error("Input does not match rock, paper, or scissors.");
+        alert("Invalid response.");
+        return 0;
     }
 }
 
@@ -76,7 +78,10 @@ function playRound(p, c) {
     if (p === c) {
         console.log("Tie.");
         alert("Tie!");
-        return 3;
+        return 0;
+    } else if (p === 0) {
+        console.log("pSelect: invalid");
+        return 0;
     } else if (p === "rock" && c === "scissors") {
         console.log("Rock beats scissors.");
         alert("Player won!");
@@ -111,10 +116,10 @@ function game() {
 
     // Aggregate scores, best out of 5. Ties don't count as a round.
     for (let i = 0; i < 5; i++) {
-        let count = playRound(getPSelect(), getCSelect()); 
-        if (count === 1) {
+        let roundScore = playRound(getPSelect(), getCSelect()); 
+        if (roundScore === 1) {
             pW++;
-        } else if (count === 2) {
+        } else if (roundScore === 2) {
             cW++;
         } else {
             i--;
