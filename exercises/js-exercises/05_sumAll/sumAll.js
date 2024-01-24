@@ -11,8 +11,9 @@ const sumAll = function (firstNum, secondNum) {
     if (firstNum > secondNum) {
         sumArr.shift();
         sumArr.push(firstNum);
+        // Refactor: Remove shift and push, replace with: 
+        // sumArr == [secondNum, firstNum]
     }
-    console.log(sumArr);
     
     // Add numbers within range specified in parameters
     let sum = 0;
@@ -22,8 +23,6 @@ const sumAll = function (firstNum, secondNum) {
     }
     return sum;
 };
-
-console.log(sumAll(0, 1));
 
 // Do not edit below this line
 module.exports = sumAll;
