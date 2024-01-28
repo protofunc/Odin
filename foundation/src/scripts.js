@@ -1,32 +1,30 @@
-// Get the button using its class name. This gets the first element with the class 'red'.
+// Get the button using its class name. This gets the first element with the class "red"
 let redButton = document.querySelector(".red");
 let blueButton = document.querySelector(".blue");
 
-// Compare func
-function compare(a, b) {
-    if (a === b) {
-        return `${a} equals ${b}`;
-    } else if (a != b) {
-        return `${a} does not equal ${b}` 
-    }
+// Prep <p> element to be populated with color of button pressed
+const buttonColorDiv = document.querySelector("#button-colors");
+const buttonColorText = document.createElement("p");
+buttonColorText.id = "button-color-text";
+buttonColorText.style.marginTop = "1em";
+
+// Display buttonColorText in the right color
+function getButtonColor(color) {
+    buttonColorText.style.color = color;
+    buttonColorText.textContent = `You clicked the ${color} button.`;
+    buttonColorDiv.appendChild(buttonColorText);
 }
 
-// Return button click message.
-function bMessage(color) {
-    return `You pressed the ${color} button. Check the console.`;
-} 
-
-// Add an event listener to the button
+// Display red text/message
 redButton.addEventListener("click", function () {
-  console.log(compare(1,2));
-  alert(bMessage("red"));
+  getButtonColor("red");
 });
 
-// Add an event listener to the button
-blueButton.addEventListener("click", function () {
-    console.log(compare(1,1));
-    alert(bMessage("blue"));
-  });
+// Display blue text/message
+blueButton.addEventListener("click", function (e) {
+    getButtonColor("blue");
+    e.target.style.background = "black";
+});
 
 /* 
 This is code for the GameBox functionality 
@@ -51,14 +49,14 @@ function getCSelect() {
 
     /*
     Alternative way:
-    let choices = ['rock', 'paper', 'scissors'];
+    let choices = ["rock", "paper", "scissors"];
     let cSelect = choices[Math.floor(Math.random() * cSelect.length)];
     console.log(cSelect);
     return cSelect;
     */
 }
 
-// Prompt for and return user selection
+// Prompt for user selection
 function getPSelect() {
     let input = prompt("Choose rock, paper, or scissors. Only type one of these three options.").toLowerCase();
 
@@ -114,7 +112,7 @@ function game() {
     let pW = 0;
     let cW = 0;
 
-    // Aggregate scores, best out of 5. Ties don't count as a round.
+    // Aggregate scores, best out of 5. Ties don"t count as a round.
     for (let i = 0; i < 5; i++) {
         let roundScore = playRound(getPSelect(), getCSelect()); 
         if (roundScore === 1) {
@@ -143,3 +141,25 @@ function game() {
 playButton.addEventListener("click", function () {
     game();
 });
+
+/* Manipulate DOM in index.html -- use this to dynamically display score while using GameBox. */
+
+// querySelect empy <div id="js-container">
+const container = document.querySelector("#js-container"); // Access <div id="js-container"> in index.html
+
+// Create new HTML elements
+const content = document.createElement("div"); // Create a new <div> in #js-container
+const paraOne = document.createElement("p"); // Create new <p>
+
+// Add class names to newly created elements
+content.classList.add("js-content"); // Add class name: <div class="js-content">
+paraOne.classList.add("para-one");
+
+// Define string to be displayed in paraOne
+paraOne.textContent = "This is the score.";
+
+// Styling
+paraOne.style.color = "white";
+
+container.appendChild(content); // .js-content added to #js-container
+content.appendChild(paraOne); // paraOne added to .js-content
