@@ -28,10 +28,23 @@
                 <h3 id="game-title">GameBox</h3>
                 <p id="game-text">Rock, Paper, Scissors!</p>
                 <div class="game-roll">
-                    <button class="game-buttons" id="play">Play</button>
+                    <button class="game-buttons" id="rock-button">Rock</button>
+                    <button class="game-buttons" id="paper-button">Paper</button>
+                    <button class="game-buttons" id="scissors-button">Scissors</button>
                 </div>
-                <!-- Div for DOM manipulation in scripts -->
-                <div id="js-container"></div>
+                <div class="game-score">
+                    <div class="para-score">
+                        <p id="cpu-name">CPU</p>
+                        <p id="cpu-score">0</p>
+                        <p id="cpu-choice"></p>
+                    </div>
+                    <div class="para-score">
+                        <p id="player-name">Player</p>
+                        <p id="player-score">0</p>
+                        <p id="player-choice"></p>
+                    </div>
+                </div>
+                <p id="game-outcome"></p>
             </div>
         </div>
         <div class="content-quote">

@@ -1,16 +1,24 @@
-// Get the button using its class name. This gets the first element with the class "red"
-let redButton = document.querySelector(".red");
-let blueButton = document.querySelector(".blue");
+/*
+*
+*
+* This is red and blue pill functionality
+*
+*
+*/
 
-// Prep <p> element to be populated with color of button pressed
-const buttonColorDiv = document.querySelector("#button-colors");
+// Create <p> element and assign an ID to it
 const buttonColorText = document.createElement("p");
 buttonColorText.id = "button-color-text";
-buttonColorText.style.marginTop = "1em";
+
+// Access HTML elements for DOM manipulation
+const buttonColorDiv = document.querySelector("#button-colors");
+let redButton = document.querySelector(".red");
+let blueButton = document.querySelector(".blue");
 
 // Display buttonColorText in the right color
 function getButtonColor(color) {
     buttonColorText.style.color = color;
+    buttonColorText.style.marginTop = "1em";
     buttonColorText.textContent = `You clicked the ${color} button.`;
     buttonColorDiv.appendChild(buttonColorText);
 }
@@ -26,140 +34,120 @@ blueButton.addEventListener("click", function (e) {
     e.target.style.background = "black";
 });
 
-/* 
-This is code for the GameBox functionality 
+/*
+*
+* 
+* This is code for the GameBox functionality
+* 
+*
 */
 
-// Access "Play" button via its ID
-let playButton = document.querySelector("#play");
+// Variables for game() functionality
+let playerWin = 0;
+let cpuWin = 0;
+let endOfGame = false;
 
-// Randomize computer roll
-function getCSelect() {
-    let r = Math.floor(Math.random() * 3) + 1;
-    if (r === 1) {
-        console.log("cSelect: rock");
-        return "rock";
-    } else if (r === 2) {
-        console.log("cSelect: scissors");
-        return "scissors";
-    } else {
-        console.log("cSelect: paper");
-        return "paper";
+// Access HTML elements for DOM manipulation
+let cpuScore = document.querySelector("#cpu-score");
+let playerScore = document.querySelector("#player-score");
+let cpuChoice = document.querySelector("#cpu-choice");
+let playerChoice = document.querySelector("#player-choice");
+let gameOutcome = document.querySelector("#game-outcome");
+const rockButton = document.querySelector("#rock-button");
+const paperButton = document.querySelector("#paper-button");
+const scissorsButton = document.querySelector("#scissors-button");
+
+// Initiate the rock, paper, scissors (RPS) game
+function game(playerSelection) {
+    // Check if game needs to be reset
+    if (endOfGame===true) {
+        gameReset();
     }
 
-    /*
-    Alternative way:
-    let choices = ["rock", "paper", "scissors"];
-    let cSelect = choices[Math.floor(Math.random() * cSelect.length)];
-    console.log(cSelect);
-    return cSelect;
-    */
+    // Get player and computer selections then play a round of RPS
+    let cpuSelection = getCpuSelection();
+    let roundScore = playRound(playerSelection, cpuSelection);
+    if (roundScore === 1) {
+        playerWin++;
+    }
+    if (roundScore === 2) {
+        cpuWin++;
+    } 
+
+    // Display selection and score on website
+    cpuScore.textContent = cpuWin;
+    playerScore.textContent = playerWin;
+    cpuChoice.textContent = cpuSelection;
+    playerChoice.textContent = playerSelection;
+
+    // Declare winner. Best out of 5 wins. Automatically stop if a player gets 3 wins
+    if (cpuWin+playerWin === 5 || cpuWin === 3 || playerWin === 3) {
+        if (playerWin > cpuWin) {
+            gameOutcome.innerHTML = "<b>Player</b> <u>wins</u> the match!";
+        }
+        if (playerWin < cpuWin) {
+            gameOutcome.innerHTML = "<b>Computer</b> <u>wins</u> the match!";
+        }
+
+        // Flag end of game so game can reset for next match
+        endOfGame = true;
+    }
 }
 
-// Prompt for user selection
-function getPSelect() {
-    let input = prompt("Choose rock, paper, or scissors. Only type one of these three options.").toLowerCase();
+// Reset wins, score, and end of game parameter to for new match
+function gameReset() {
+    cpuWin = 0;
+    playerWin = 0;
+    cpuScore.textContent = cpuWin;
+    playerScore.textContent = playerWin;
+    endOfGame = false;
+}
 
-    // Return value or end game on incorrect input
-    if (input === "rock" || input === "scissors" || input === "paper") {
-        console.log("pSelect:", input);
-        return input;
-    } else {
-        alert("Invalid response.");
-        return 0;
-    }
+// Randomize computer roll
+function getCpuSelection() {
+    let options = ["Rock", "Paper", "Scissors"];
+    let choice = options[Math.floor(Math.random() * options.length)];
+    return choice;
 }
 
 // Play round of the game
 function playRound(p, c) {
     // Determine winner:
     if (p === c) {
-        console.log("Tie.");
-        alert("Tie!");
+        gameOutcome.textContent = "Tie! No points awarded.";
+        cpuChoice.textContent = "";
+        playerChoice.textContent = "";
         return 0;
-    } else if (p === 0) {
-        console.log("pSelect: invalid");
-        return 0;
-    } else if (p === "rock" && c === "scissors") {
-        console.log("Rock beats scissors.");
-        alert("Player won!");
+    } else if (p === "Rock" && c === "Scissors") {
+        gameOutcome.textContent = "Rock beats scissors. Player won!";
         return 1;
-    } else if (p === "rock" && c === "paper") {
-        console.log("Paper beats rock.");
-        alert("Computer won!");
+    } else if (p === "Rock" && c === "Paper") {
+        gameOutcome.textContent = "Paper beats rock. Computer won!";
         return 2;
-    } else if (p === "scissors" && c === "rock") {
-        console.log("Rock beats scissors.");
-        alert("Computer won!");
+    } else if (p === "Scissors" && c === "Rock") {
+        gameOutcome.textContent = "Rock beats scissors. Computer won!";
         return 2;
-    } else if (p === "scissors" && c === "paper") {
-        console.log("Scissors beat paper.");
-        alert("Player won!");
+    } else if (p === "Scissors" && c === "Paper") {
+        gameOutcome.textContent = "Scissors beat paper. Player won!";
         return 1;
-    } else if (p === "paper" && c === "rock") {
-        console.log("Paper beats rock.");
-        alert("Player won!");
+    } else if (p === "Paper" && c === "Rock") {
+        gameOutcome.textContent = "Paper beats rock. Player won!";
         return 1;
-    } else if (p === "paper" && c === "scissors") {
-        console.log("Scissors beat paper.");
-        alert("Computer won!");
+    } else if (p === "Paper" && c === "Scissors") {
+        gameOutcome.textContent = "Scissors beat paper. Computer won!";
         return 2;
     }
-}
+} 
 
-// Initiate game
-function game() {
-    let pW = 0;
-    let cW = 0;
-
-    // Aggregate scores, best out of 5. Ties don"t count as a round.
-    for (let i = 0; i < 5; i++) {
-        let roundScore = playRound(getPSelect(), getCSelect()); 
-        if (roundScore === 1) {
-            pW++;
-        } else if (roundScore === 2) {
-            cW++;
-        } else {
-            i--;
-        }
-    }
-
-    // Display final score in the console
-    console.log("Player Score: " + pW, "\nComp Score: " + cW);
-
-    // Declare winner by comparing player wins (pW) against computer wins (cW)
-    if (pW > cW) {
-        alert("Player wins the match!");
-    } else if (pW < cW) {
-        alert("Computer wins the match!");
-    } else {
-        alert("Tie Game!")
-    }
-}
-
-// Runs game after clicking the Play button
-playButton.addEventListener("click", function () {
-    game();
+// EventListners attached to each of the buttons, play game w/ by specifiying player selection
+rockButton.addEventListener("click", function () {
+    game("Rock");
 });
 
-/* Manipulate DOM in index.html -- use this to dynamically display score while using GameBox. */
+paperButton.addEventListener("click", function () {
+    game("Paper");
+});
 
-// querySelect empy <div id="js-container">
-const container = document.querySelector("#js-container"); // Access <div id="js-container"> in index.html
-
-// Create new HTML elements
-const content = document.createElement("div"); // Create a new <div> in #js-container
-const paraOne = document.createElement("p"); // Create new <p>
-
-// Add class names to newly created elements
-content.classList.add("js-content"); // Add class name: <div class="js-content">
-paraOne.classList.add("para-one");
-
-// Define string to be displayed in paraOne
-paraOne.textContent = "This is the score.";
-
-// Styling
-paraOne.style.color = "white";
-
-container.appendChild(content); // .js-content added to #js-container
-content.appendChild(paraOne); // paraOne added to .js-content
+scissorsButton.addEventListener("click", function () {
+    game("Scissors");
+});

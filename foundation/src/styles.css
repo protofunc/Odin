@@ -16,7 +16,7 @@ light purple grey {color: #e2dbe7;}
     src: url(/src/fonts/TechnoRace.otf) format('opentype');
 }
 
-header, .logo-title, ul, body, .container, .content-top, .content-game {
+header, .logo-title, ul, body, .container, .content-top, .content-game, .game-score, .para-score {
     display: flex;
 }
 
@@ -87,7 +87,7 @@ footer p {
 }
 
 .link:hover {
-    color: goldenrod;
+    color: rgb(243, 181, 11);
   }
 
 
@@ -117,8 +117,9 @@ footer p {
     justify-content: center;
     margin: 2em 3em 2em 1.5em;
     padding: 2em;
+    padding-bottom: 1em;
     border: 2px solid white;
-    
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 #game-title {
@@ -143,6 +144,37 @@ footer p {
     background: #1e2728;
     width: 7em;
     font-weight: bold;
+}
+
+.game-score {
+    border: 2px solid white;
+    background: #594f6a;
+    padding: .5em;
+    align-items: center;
+    font-family: 'TechnoRace', monospace;
+    font-size: 25px;
+    color: white;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.para-score {
+    padding: 0 1em;
+    flex-direction: column;
+    text-align: center;
+}
+
+#cpu-name, #player-name {
+    color: rgb(243, 181, 11);
+}
+
+#cpu-choice, #player-choice {
+    color: rgb(250, 239, 192);
+}
+
+#game-outcome {
+    padding-top: 1em;
+    color: rgb(92, 26, 26);
 }
 
 .content-quote {
