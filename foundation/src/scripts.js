@@ -115,8 +115,6 @@ function playRound(p, c) {
     // Determine winner:
     if (p === c) {
         gameOutcome.textContent = "Tie! No points awarded.";
-        cpuChoice.textContent = "";
-        playerChoice.textContent = "";
         return 0;
     } else if (p === "Rock" && c === "Scissors") {
         gameOutcome.textContent = "Rock beats scissors. Player won!";
