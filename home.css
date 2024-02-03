@@ -13,7 +13,7 @@ light purple grey {color: #e2dbe7;}
 
 @font-face {
     font-family: 'TechnoRace';
-    src: url(/src/fonts/TechnoRace.otf) format('opentype');
+    src: url(TechnoRace.otf) format('opentype');
 }
 
 header, .logo-title, ul, body, .container, .content-top, .content-game, .game-score, .para-score {
