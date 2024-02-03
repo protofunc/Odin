@@ -1,1 +1,4 @@
-This is a generic HTML, CSS, and JS site. It has the GameBox feature that play Rock, Paper, Scissors with the computer. Best of five wins.
+This is the production build of New Solutions.
+
+Versions:
+v0.1 - 2/23/24
